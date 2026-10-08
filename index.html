@@ -34,7 +34,6 @@ body:before{
 main{width:min(760px,100%);margin:auto;padding:18px 14px 46px}
 .top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
 .brand{display:flex;align-items:center;gap:11px}
-.mark{width:40px;height:40px;flex:none;filter:drop-shadow(0 0 8px rgba(255,122,26,.18))}
 .brand h1{margin:0;font-size:17px;line-height:1;font-weight:900;letter-spacing:.05em}
 .brand h1 span{color:var(--orange)}
 .brand p{margin:5px 0 0;font-size:8px;letter-spacing:.23em;color:var(--muted)}
@@ -52,20 +51,20 @@ main{width:min(760px,100%);margin:auto;padding:18px 14px 46px}
 .bigrow{display:flex;align-items:flex-end;justify-content:space-between;gap:12px}
 .big{display:flex;align-items:baseline;gap:7px;margin-top:6px}
 .big b{
- font-size:clamp(54px,15vw,84px);line-height:.9;font-weight:900;letter-spacing:-.055em;
+ font-size:clamp(54px,15vw,84px);line-height:1.05;font-weight:900;letter-spacing:-.055em;padding:2px 0 3px;
  background:linear-gradient(180deg,#fff,#c6cbd2 46%,#737b86);
  -webkit-background-clip:text;background-clip:text;color:transparent;
  text-shadow:0 2px 0 rgba(0,0,0,.3);
 }
 .big span{font-size:19px;color:var(--silver2);font-weight:800}
-.arrow{width:76px;height:76px;opacity:.94}
 .progress{height:10px;margin-top:16px;border:1px solid #3b424c;background:#101318;box-shadow:inset 0 2px 4px #090b0e;border-radius:5px;overflow:hidden}
 .progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--orange3),var(--orange),var(--orange2));box-shadow:0 0 12px var(--glow);transition:width .55s cubic-bezier(.2,.8,.2,1)}
 .progressline{display:flex;justify-content:space-between;margin-top:7px;font-size:10px;color:var(--muted)}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .card h2{font-size:12px;letter-spacing:.1em;text-transform:uppercase;margin:0 0 13px}
 .week{display:flex;align-items:center;gap:10px}
-.gear{width:52px;height:52px;flex:none}
+.week-status{width:52px;height:52px;flex:none;border:3px solid #3a424d;border-radius:50%;position:relative;box-shadow:inset 0 0 0 5px #171b20,0 0 0 1px #252c34}
+.week-status:after{content:"";position:absolute;left:50%;top:50%;width:18px;height:18px;border-radius:50%;transform:translate(-50%,-50%);background:var(--orange);box-shadow:0 0 12px var(--glow)}
 .weekinfo b{font-size:18px}
 .weekinfo span{display:block;font-size:10px;color:var(--muted);margin-top:3px}
 .formgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
@@ -116,11 +115,7 @@ svg{display:block;min-width:560px;width:100%;height:auto}
 <main>
 <header class="top">
  <div class="brand">
-  <svg class="mark" viewBox="0 0 100 100" aria-hidden="true">
-   <defs><linearGradient id="m" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f2f4f7"/><stop offset=".55" stop-color="#aeb4bd"/><stop offset="1" stop-color="#68717c"/></linearGradient></defs>
-   <path d="M29 9h14l5 9 10 3 9-6 10 10-6 9 3 10 10 5v14l-10 5-3 10 6 9-10 10-9-6-10 3-5 10H29l-5-10-10-3-9 6L-5 80l6-9L-2 61l-10-5V42l10-5L1 27l-6-9L5 8l9 6 10-3z" transform="translate(8 8) scale(.78)" fill="none" stroke="url(#m)" stroke-width="9"/>
-   <path d="M49 72V28m0 0-14 14m14-14 14 14" fill="none" stroke="#ff7a1a" stroke-width="7" stroke-linecap="square" stroke-linejoin="miter"/>
-  </svg>
+
   <div><h1>YAMA <span>GROUP</span></h1><p>AUTOMATION SOLUTIONS</p></div>
  </div>
 </header>
@@ -128,12 +123,7 @@ svg{display:block;min-width:560px;width:100%;height:auto}
 <section class="card hero" id="hero">
  <div class="bigrow">
   <div><div class="eyebrow">Текущий максимум / цель</div><div class="big"><b id="cur">20</b><span>/ <span id="goal">30</span></span></div></div>
-  <svg class="arrow" viewBox="0 0 100 100" aria-label="Рост">
-   <defs><linearGradient id="a" x1="0" y1="1" x2="1" y2="0"><stop stop-color="#e8590c"/><stop offset=".5" stop-color="#ff7a1a"/><stop offset="1" stop-color="#ffcf79"/></linearGradient></defs>
-   <path d="M17 76 39 54l10 10 31-38" fill="none" stroke="#7d2d09" stroke-width="18" opacity=".5"/>
-   <path d="M17 76 39 54l10 10 31-38" fill="none" stroke="url(#a)" stroke-width="12"/>
-   <path d="M80 26 60 28 78 46" fill="none" stroke="#ffb347" stroke-width="8"/>
-  </svg>
+
  </div>
  <div class="progress"><i id="fill"></i></div>
  <div class="progressline"><span id="startLabel">Старт: 20</span><span id="leftLabel">Осталось: 10</span></div>
@@ -141,7 +131,7 @@ svg{display:block;min-width:560px;width:100%;height:auto}
 
 <div class="grid2">
 <section class="card pad"><h2>Неделя</h2><div class="week">
- <svg class="gear" viewBox="0 0 100 100" id="gear"></svg>
+ <div class="week-status" aria-hidden="true"></div>
  <div class="weekinfo"><b><span id="weekCount">0</span> / <span id="per">3</span></b><span>тренировки выполнено</span></div>
 </div></section>
 <section class="card pad"><h2>Следующая тренировка</h2><div class="plan" id="plan"></div></section>
@@ -187,23 +177,12 @@ function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
 function best(){return S.log.reduce((m,e)=>Math.max(m,Number(e.best)||0),S.start)}
 function weekRange(){const n=new Date(),off=(n.getDay()+6)%7,a=new Date(n);a.setDate(n.getDate()-off);const b=new Date(a);b.setDate(a.getDate()+6);return[iso(a),iso(b)]}
 function weekCount(){const [a,b]=weekRange();return S.log.filter(e=>e.d>=a&&e.d<=b).length}
-function renderGear(){
- const n=weekCount(), total=Math.max(1,S.per), on=Math.min(n,total);
- let s='<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f2f4f7"/><stop offset=".55" stop-color="#aeb4bd"/><stop offset="1" stop-color="#646d78"/></linearGradient></defs>';
- for(let i=0;i<12;i++){const a=i*30-90,r=39,x=50+Math.cos(a*Math.PI/180)*r,y=50+Math.sin(a*Math.PI/180)*r;const active=i<Math.round(on/total*12);s+=`<rect x="${x-4}" y="${y-7}" width="8" height="14" rx="1" transform="rotate(${a+90} ${x} ${y})" fill="${active?'#ff7a1a':'#39414b'}" ${active?'filter="url(#glow)"':''}/>`}
- s+='<circle cx="50" cy="50" r="29" fill="#171b20" stroke="#4a535f" stroke-width="3"/><circle cx="50" cy="50" r="21" fill="none" stroke="#252c34" stroke-width="6"/>';
- const pct=on/total, end=-90+pct*360, rr=21, x=50+Math.cos(end*Math.PI/180)*rr,y=50+Math.sin(end*Math.PI/180)*rr;
- s+=`<path d="${arcPath(50,50,rr,-90,end)}" fill="none" stroke="#ff7a1a" stroke-width="6" stroke-linecap="round"/>`;
- s+='<defs><filter id="glow"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>';
- $("gear").innerHTML=s;
-}
 function arcPath(cx,cy,r,a0,a1){const p=a=>[cx+r*Math.cos(a*Math.PI/180),cy+r*Math.sin(a*Math.PI/180)];const p0=p(a0),p1=p(a1),large=Math.abs(a1-a0)>180?1:0;return `M ${p0[0]} ${p0[1]} A ${r} ${r} 0 ${large} 1 ${p1[0]} ${p1[1]}`}
 function render(){
  const b=best(),g=S.goal,n=weekCount();
  $("cur").textContent=b;$("goal").textContent=g;$("per").textContent=S.per;$("weekCount").textContent=Math.min(n,S.per);
  const pct=Math.max(0,Math.min(100,(b-S.start)/Math.max(1,g-S.start)*100));
  $("fill").style.width=pct+"%";$("startLabel").textContent="Старт: "+S.start;$("leftLabel").textContent=b>=g?"Цель достигнута 🎉":"Осталось: "+(g-b);
- renderGear();
  const r=x=>Math.max(1,Math.round(b*x));
  let plan;
  if(b>=g)plan="<b>Цель достигнута</b>Поставь новую цель в настройках.";
