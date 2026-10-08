@@ -89,8 +89,8 @@ input:focus{border-color:var(--orange);box-shadow:0 0 0 2px rgba(255,122,26,.18)
 .btn:focus-visible,.iconbtn:focus-visible{outline:2px solid var(--orange2);outline-offset:3px}
 .plan{font-size:12px;line-height:1.6;color:#d6dbe0}
 .plan b{display:block;color:var(--silver1);font-size:13px;margin-bottom:2px}
-.chartwrap{overflow-x:auto}
-svg{display:block;min-width:560px;width:100%;height:auto}
+.chartwrap{width:100%;overflow:hidden}
+.chartwrap svg{display:block;width:100%;height:auto;min-width:0}
 .history{list-style:none;margin:0;padding:0}
 .history li{display:grid;grid-template-columns:82px 1fr auto auto;align-items:center;gap:9px;padding:10px 0;border-bottom:1px solid #303741}
 .history li:last-child{border-bottom:0}
@@ -199,7 +199,7 @@ function render(){
 }
 function renderChart(){
  const pts=[{d:"Старт",v:S.start}].concat([...S.log].sort((a,b)=>a.d.localeCompare(b.d)).map(e=>({d:fmt(e.d).slice(0,5),v:Number(e.best)})));
- const W=Math.max(560,pts.length*46),H=230,L=36,R=15,T=15,B=32;
+ const W=700,H=230,L=38,R=16,T=15,B=34;
  const lo=Math.max(0,Math.min(...pts.map(p=>p.v),S.start)-2),hi=Math.max(S.goal,...pts.map(p=>p.v))+2;
  const X=i=>pts.length>1?L+i*(W-L-R)/(pts.length-1):W/2;
  const Y=v=>T+(hi-v)/(hi-lo)*(H-T-B);
