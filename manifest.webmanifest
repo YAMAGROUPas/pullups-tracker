@@ -1,0 +1,10 @@
+{
+  "name":"Трекер подтягиваний — YAMA GROUP",
+  "short_name":"Подтягивания",
+  "start_url":"./index.html",
+  "display":"standalone",
+  "background_color":"#14171c",
+  "theme_color":"#14171c",
+  "lang":"ru",
+  "description":"Личный трекер прогресса в подтягиваниях"
+}
